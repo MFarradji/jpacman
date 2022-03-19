@@ -30,14 +30,14 @@ public class Player extends Unit {
     private final AnimatedSprite deathSprite;
 
     /**
-     * <code>true</code> iff this player is alive.
-     */
-    private boolean alive;
-
-    /**
      * {@link Unit} iff this player died by collision, <code>null</code> otherwise.
      */
     private Unit killer;
+
+    /**
+     * The number of lives of a player.
+     */
+    private int lives;
 
     /**
      * Creates a new player with a score of 0 points.
@@ -49,7 +49,7 @@ public class Player extends Unit {
      */
     protected Player(Map<Direction, Sprite> spriteMap, AnimatedSprite deathAnimation) {
         this.score = 0;
-        this.alive = true;
+        this.lives = 3;
         this.sprites = spriteMap;
         this.deathSprite = deathAnimation;
         deathSprite.setAnimating(false);
@@ -61,7 +61,7 @@ public class Player extends Unit {
      * @return <code>true</code> iff the player is alive.
      */
     public boolean isAlive() {
-        return alive;
+        return getLives() > 0;
     }
 
     /**
@@ -69,18 +69,16 @@ public class Player extends Unit {
      *
      * If the player comes back alive, the {@link killer} will be reset.
      *
-     * @param isAlive
-     *            <code>true</code> iff this player is alive.
      */
-    public void setAlive(boolean isAlive) {
-        if (isAlive) {
+    public void loseLife() {
+        decrementLives();
+        if (isAlive()) {
             deathSprite.setAnimating(false);
             this.killer = null;
         }
-        if (!isAlive) {
+        else {
             deathSprite.restart();
         }
-        this.alive = isAlive;
     }
 
     /**
@@ -108,6 +106,22 @@ public class Player extends Unit {
      */
     public int getScore() {
         return score;
+    }
+
+    /**
+     * Returns the amount of lives of this player.
+     *
+     * @return The amount of lives of this player.
+     */
+    public int getLives() {
+        return lives;
+    }
+
+    /**
+     * Reduce by one the number of lives of this player.
+     */
+    private void decrementLives() {
+        this.lives--;
     }
 
     @Override

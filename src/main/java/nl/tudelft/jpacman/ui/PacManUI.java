@@ -1,7 +1,8 @@
 package nl.tudelft.jpacman.ui;
 
-import java.awt.BorderLayout;
-import java.awt.Container;
+import java.awt.*;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
@@ -10,6 +11,7 @@ import java.util.concurrent.TimeUnit;
 import javax.swing.*;
 
 import nl.tudelft.jpacman.game.Game;
+import nl.tudelft.jpacman.level.Player;
 import nl.tudelft.jpacman.ui.ScorePanel.ScoreFormatter;
 import nl.tudelft.jpacman.ui.LivesPanel.LivesFormatter;
 
@@ -40,15 +42,7 @@ public class PacManUI extends JFrame {
      */
     private static final int FRAME_INTERVAL = 40;
 
-    /**
-     * The panel displaying the player scores.
-     */
-    private final ScorePanel scorePanel;
-
-    /**
-     * The panel displaying the player scores.
-     */
-    private final LivesPanel livesPanel;
+    private final List<PlayerInfoPanel> playerInfoPanels;
 
     /**
      * The panel displaying the game.
@@ -66,13 +60,9 @@ public class PacManUI extends JFrame {
      * @param keyMappings
      *            The map of keyCode-to-action entries that will be added as key
      *            listeners to the interface.
-     * @param scoreFormatter
-     *            The formatter used to display the current score.
      */
     public PacManUI(final Game game, final Map<String, Action> buttons,
-                    final Map<Integer, Action> keyMappings,
-                    ScoreFormatter scoreFormatter,
-                    LivesFormatter livesFormatter) {
+                    final Map<Integer, Action> keyMappings) {
         super("JPacman");
         assert game != null;
         assert buttons != null;
@@ -85,28 +75,33 @@ public class PacManUI extends JFrame {
 
         JPanel buttonPanel = new ButtonPanel(buttons, this);
 
-        scorePanel = new ScorePanel(game.getPlayers());
-        if (scoreFormatter != null) {
-            scorePanel.setScoreFormatter(scoreFormatter);
-        }
-
-        livesPanel = new LivesPanel(game.getPlayers());
-        if (livesFormatter != null) {
-            livesPanel.setLivesFormatter(livesFormatter);
-        }
-
         boardPanel = new BoardPanel(game);
+
+        this.playerInfoPanels = new ArrayList<>();
 
         Container contentPanel = getContentPane();
         contentPanel.setLayout(new BorderLayout());
         contentPanel.add(buttonPanel, BorderLayout.SOUTH);
-        JPanel panels = new JPanel();
-        panels.add(scorePanel);
-        panels.add(livesPanel);
-        contentPanel.add(panels, BorderLayout.NORTH);
+        AddPlayerInfoPanels(contentPanel, game);
         contentPanel.add(boardPanel, BorderLayout.CENTER);
 
         pack();
+    }
+
+    private void AddPlayerInfoPanels(Container contentPanel, Game game) {
+        List<Player> players = game.getPlayers();
+
+        JPanel playerInfoContainer = new JPanel();
+        playerInfoContainer.setLayout(new GridLayout(1, players.size()));
+
+        int count = 1;
+        for (Player player : players) {
+            PlayerInfoPanel playerInfoPanel = new PlayerInfoPanel(player, count);
+            playerInfoContainer.add(playerInfoPanel);
+            playerInfoPanels.add(playerInfoPanel);
+            count++;
+        }
+        contentPanel.add(playerInfoContainer, BorderLayout.NORTH);
     }
 
     /**
@@ -124,7 +119,8 @@ public class PacManUI extends JFrame {
      */
     private void nextFrame() {
         boardPanel.repaint();
-        scorePanel.refresh();
-        livesPanel.refresh();
+        for (PlayerInfoPanel playerInfoPanels : playerInfoPanels) {
+            playerInfoPanels.refresh();
+        }
     }
 }

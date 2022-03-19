@@ -26,7 +26,7 @@ import java.util.List;
 public class Launcher {
     private static final PacManSprites SPRITE_STORE = new PacManSprites();
 
-    private static int livesPerPlayer = 1;
+    private int livesPerPlayer = 1;
 
     public static final String DEFAULT_MAP = "/board.txt";
     private String levelMap = DEFAULT_MAP;

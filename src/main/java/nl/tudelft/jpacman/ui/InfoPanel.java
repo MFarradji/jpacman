@@ -5,9 +5,6 @@ import nl.tudelft.jpacman.ui.InfoFormatters.InfoFormatter;
 
 import javax.swing.*;
 import java.awt.*;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
 
 /**
  * A panel consisting of a column for each player, with the numbered players on

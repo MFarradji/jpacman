@@ -12,8 +12,6 @@ import javax.swing.*;
 
 import nl.tudelft.jpacman.game.Game;
 import nl.tudelft.jpacman.level.Player;
-import nl.tudelft.jpacman.ui.ScorePanel.ScoreFormatter;
-import nl.tudelft.jpacman.ui.LivesPanel.LivesFormatter;
 
 /**
  * The default JPacMan UI frame. The PacManUI consists of the following

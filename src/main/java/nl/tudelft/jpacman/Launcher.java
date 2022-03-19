@@ -24,14 +24,21 @@ import java.util.List;
  */
 @SuppressWarnings("PMD.TooManyMethods")
 public class Launcher {
-
     private static final PacManSprites SPRITE_STORE = new PacManSprites();
+
+    private static int livesPerPlayer = 1;
 
     public static final String DEFAULT_MAP = "/board.txt";
     private String levelMap = DEFAULT_MAP;
 
     private PacManUI pacManUI;
     private Game game;
+
+    public Launcher(int livesPerPlayer) {
+        this.livesPerPlayer = livesPerPlayer;
+    }
+
+    public Launcher() { }
 
     /**
      * @return The game object this launcher will start when {@link #launch()}
@@ -70,7 +77,7 @@ public class Launcher {
     public Game makeGame() {
         GameFactory gf = getGameFactory();
         Level level = makeLevel();
-        game = gf.createSinglePlayerGame(level, loadPointCalculator());
+        game = gf.createSinglePlayerGame(level, loadPointCalculator(), livesPerPlayer);
         return game;
     }
 
@@ -202,6 +209,6 @@ public class Launcher {
      *            The command line arguments - which are ignored.
      */
     public static void main(String[] args)  {
-        new Launcher().launch();
+        new Launcher(3).launch();
     }
 }

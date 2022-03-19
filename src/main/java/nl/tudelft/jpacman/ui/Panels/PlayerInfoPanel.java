@@ -1,6 +1,7 @@
-package nl.tudelft.jpacman.ui;
+package nl.tudelft.jpacman.ui.Panels;
 
 import nl.tudelft.jpacman.level.Player;
+import nl.tudelft.jpacman.ui.Panels.InfoPanel;
 
 import javax.swing.*;
 import java.awt.*;

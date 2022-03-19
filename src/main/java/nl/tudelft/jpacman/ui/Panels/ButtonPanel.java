@@ -1,4 +1,6 @@
-package nl.tudelft.jpacman.ui;
+package nl.tudelft.jpacman.ui.Panels;
+
+import nl.tudelft.jpacman.ui.Action;
 
 import java.util.Map;
 
@@ -11,7 +13,7 @@ import javax.swing.JPanel;
  *
  * @author Jeroen Roosen 
  */
-class ButtonPanel extends JPanel {
+public class ButtonPanel extends JPanel {
 
     /**
      * Default serialisation ID.
@@ -23,7 +25,7 @@ class ButtonPanel extends JPanel {
      * @param buttons The map of caption - action for each button.
      * @param parent The parent frame, used to return window focus.
      */
-    ButtonPanel(final Map<String, Action> buttons, final JFrame parent) {
+    public ButtonPanel(final Map<String, Action> buttons, final JFrame parent) {
         super();
         assert buttons != null;
         assert parent != null;

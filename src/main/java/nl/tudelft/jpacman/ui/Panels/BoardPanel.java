@@ -1,4 +1,4 @@
-package nl.tudelft.jpacman.ui;
+package nl.tudelft.jpacman.ui.Panels;
 
 import java.awt.Color;
 import java.awt.Dimension;
@@ -17,7 +17,7 @@ import nl.tudelft.jpacman.game.Game;
  * @author Jeroen Roosen 
  *
  */
-class BoardPanel extends JPanel {
+public class BoardPanel extends JPanel {
 
     /**
      * Default serialisation ID.
@@ -46,7 +46,7 @@ class BoardPanel extends JPanel {
      * @param game
      *            The game to display.
      */
-    BoardPanel(Game game) {
+    public BoardPanel(Game game) {
         super();
         assert game != null;
         this.game = game;

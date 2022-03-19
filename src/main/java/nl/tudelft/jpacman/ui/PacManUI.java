@@ -12,6 +12,9 @@ import javax.swing.*;
 
 import nl.tudelft.jpacman.game.Game;
 import nl.tudelft.jpacman.level.Player;
+import nl.tudelft.jpacman.ui.Panels.BoardPanel;
+import nl.tudelft.jpacman.ui.Panels.ButtonPanel;
+import nl.tudelft.jpacman.ui.Panels.PlayerInfoPanel;
 
 /**
  * The default JPacMan UI frame. The PacManUI consists of the following

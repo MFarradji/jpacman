@@ -73,7 +73,7 @@ public class PacManUiBuilder {
             addStartButton(game);
             addStopButton(game);
         }
-        return new PacManUI(game, buttons, keyMappings, scoreFormatter, livesFormatter);
+        return new PacManUI(game, buttons, keyMappings);
     }
 
     /**

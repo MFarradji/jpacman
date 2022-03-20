@@ -6,13 +6,6 @@ import nl.tudelft.jpacman.ui.Panels.InfoPanel;
 import javax.swing.*;
 import java.awt.*;
 
-/**
- * A panel consisting of a column for each player, with the numbered players on
- * top and their respective scores underneath.
- *
- * @author Jeroen Roosen 
- *
- */
 public class PlayerInfoPanel extends JPanel {
 
     private static final long serialVersionUID = 1L;

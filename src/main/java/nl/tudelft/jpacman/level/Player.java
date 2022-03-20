@@ -108,18 +108,10 @@ public class Player extends Unit {
         return score;
     }
 
-    /**
-     * Returns the amount of lives of this player.
-     *
-     * @return The amount of lives of this player.
-     */
     public int getLives() {
         return lives;
     }
 
-    /**
-     * Reduce by one the number of lives of this player.
-     */
     private void decrementLives() {
         if (getLives() > 0)
             this.lives--;

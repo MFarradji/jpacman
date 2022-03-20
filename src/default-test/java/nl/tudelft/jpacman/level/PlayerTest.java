@@ -6,18 +6,9 @@ import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-/**
- * Tests various aspects of level.
- *
- * @author Jeroen Roosen 
- */
-// The four suppress warnings ignore the same rule, which results in 4 same string literals
 @SuppressWarnings({"PMD.AvoidDuplicateLiterals", "PMD.TooManyStaticImports"})
 class PlayerTest {
 
-    /**
-     * System under tests
-     */
     private Player player;
 
     @BeforeEach

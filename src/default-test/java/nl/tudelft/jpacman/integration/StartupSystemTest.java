@@ -39,9 +39,6 @@ public class StartupSystemTest {
         assertThat(getGame().isInProgress()).isTrue();
     }
 
-    /**
-     * Make sure by default the player has the correct number of lives
-     */
     @ParameterizedTest
     @ValueSource(ints = {1, 3, 5})
     public void livesCountIsCorrect(int lives) {
@@ -54,9 +51,6 @@ public class StartupSystemTest {
         assertThat(getGame().getPlayers().get(0).getLives()).isEqualTo(lives);
     }
 
-    /**
-     * Make sure by default the player has the correct default number of lives
-     */
     @Test
     public void livesCountByDefaultIsCorrect() {
         launcher = new Launcher();

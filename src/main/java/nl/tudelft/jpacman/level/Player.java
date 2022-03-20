@@ -121,7 +121,8 @@ public class Player extends Unit {
      * Reduce by one the number of lives of this player.
      */
     private void decrementLives() {
-        this.lives--;
+        if (getLives() > 0)
+            this.lives--;
     }
 
     @Override

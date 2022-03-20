@@ -3,8 +3,9 @@ package nl.tudelft.jpacman.integration;
 import nl.tudelft.jpacman.Launcher;
 import nl.tudelft.jpacman.game.Game;
 import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -14,14 +15,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class StartupSystemTest {
 
     private Launcher launcher;
-
-    /**
-     * Start a launcher, which can display the user interface.
-     */
-    @BeforeEach
-    public void before() {
-        launcher = new Launcher();
-    }
 
     /**
      * Close the user interface.
@@ -37,6 +30,8 @@ public class StartupSystemTest {
      */
     @Test
     public void gameIsRunning() {
+        launcher = new Launcher();
+
         launcher.launch();
 
         getGame().start();
@@ -44,6 +39,34 @@ public class StartupSystemTest {
         assertThat(getGame().isInProgress()).isTrue();
     }
 
+    /**
+     * Make sure by default the player has the correct number of lives
+     */
+    @ParameterizedTest
+    @ValueSource(ints = {1, 3, 5})
+    public void livesCountIsCorrect(int lives) {
+        launcher = new Launcher(lives);
+
+        launcher.launch();
+
+        getGame().start();
+
+        assertThat(getGame().getPlayers().get(0).getLives()).isEqualTo(lives);
+    }
+
+    /**
+     * Make sure by default the player has the correct default number of lives
+     */
+    @Test
+    public void livesCountByDefaultIsCorrect() {
+        launcher = new Launcher();
+
+        launcher.launch();
+
+        getGame().start();
+
+        assertThat(getGame().getPlayers().get(0).getLives()).isEqualTo(1);
+    }
 
     private Game getGame() {
         return launcher.getGame();

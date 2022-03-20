@@ -15,19 +15,12 @@ import java.awt.*;
  */
 public class PlayerInfoPanel extends JPanel {
 
-    /**
-     * Default serialisation ID.
-     */
     private static final long serialVersionUID = 1L;
 
     private final InfoPanel scorePanel;
 
     private final InfoPanel livesPanel;
 
-    /**
-     * Creates a new score panel with a column for each player.
-     *
-     */
     public PlayerInfoPanel(Player player, int index) {
         super();
         assert player != null;
